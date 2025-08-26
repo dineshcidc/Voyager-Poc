@@ -9,26 +9,15 @@ import {
   useGetOffersListMutation,
 } from "../redux/service/nubloApi";
 
-const bgImages = [
-  ImagesPath.BG_IMAGE_1,
-  ImagesPath.BG_IMAGE_2,
-  ImagesPath.BG_IMAGE_3,
-];
-
 const OfferPage = () => {
   const navigate = useNavigate();
 
-  const [
-    getOfferCategories,
-    { data: tabsData, error: tabsError, isLoading: tabsLoading },
-  ] = useGetOfferCategoriesMutation();
+  const [getOfferCategories, { data: tabsData, error: tabsError }] =
+    useGetOfferCategoriesMutation();
 
-  const [
-    getOffersList,
-    { data: listData, error: listError, isLoading: listLoading },
-  ] = useGetOffersListMutation();
+  const [getOffersList, { data: listData, error: listError }] =
+    useGetOffersListMutation();
 
-  const [activeIndex, setActiveIndex] = useState(0);
   const [activeCategory, setActiveCategory] = useState(null);
 
   // Fetch categories on component mount
@@ -58,75 +47,129 @@ const OfferPage = () => {
     }
   }, [activeCategory, getOffersList]);
 
-  // image
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % bgImages.length);
-    }, 3000); // Duration for each transition, adjust for speed
-
-    return () => clearInterval(interval);
-  }, []);
-
   if (listError || tabsError) {
     return <div>Error loading data</div>;
   }
 
   return (
-    <div className="min-h-screen flex flex-col gap-4">
-      {bgImages.map((img, idx) => (
-        <img
-          key={img}
-          src={img}
-          alt={`Background ${idx + 1}`}
-          className={`absolute inset-0 w-full h-70 object-cover transition-opacity duration-2000 ease-in-out z-0 ${
-            activeIndex === idx ? "opacity-70" : "opacity-0"
-          }`}
-          style={{ zIndex: idx }}
-        />
-      ))}
-      <div className="relative z-10">
-        {!tabsLoading ? (
-          <div className="flex gap-4 justify-center items-center">
-            {tabsData?.data?.map((category) => (
-              <button
-                key={category.category_id}
-                className={`bg-amber-600 rounded-2xl p-4 text-3xl hover:cursor-pointer ${
-                  activeCategory === category.category_id ? "active" : ""
-                }`}
-                onClick={() => setActiveCategory(category.category_id)}
-              >
-                {category.name}
+    <div className="min-h-screen flex flex-col gap-10 md:gap-25 bg-gray-light">
+      {/* carousel section */}
+      <div className="flex flex-col gap-6 items-center">
+        <div className="w-full rounded-4xl bg-amber-100 p-5.5 md:px-15 md:py-12">
+          <div className="grid md:grid-cols-2 gap-7.5 md:gap-48 items-center">
+            {/* left side content */}
+            <div className="flex flex-col gap-5 order-2 md:order-1">
+              <h1 className="text-2xl md:text-5xl">
+                Wizz your money{" "}
+                <span className="text-2xl md:text-5xl font-bold">
+                  around the world
+                </span>
+              </h1>
+              <h2 className="text-xs md:text-lg">
+                Send money to India-or anywhere-instantly and securely with just
+                one click.
+              </h2>
+              <button className="text-xs md:text-base bg-gradient-3 rounded-xl px-3 py-2 font-bold text-white w-fit">
+                Get Started
               </button>
-            ))}
+            </div>
+
+            {/* right side image */}
+            <img
+              src={ImagesPath.OFFER_IMG_1}
+              alt="Background"
+              className="w-full h-70 object-cover rounded-4xl order-1 md:order-2"
+            />
           </div>
-        ) : (
-          <h1>tabs loading</h1>
-        )}
-        {!tabsLoading && !listLoading ? (
-          <div className="bg-zinc-200 grid grid-cols-3 gap-4 p-4">
-            {listData?.data?.offer_data?.length ? (
-              listData?.data?.offer_data.map((offer) => (
-                <button
-                  key={offer.offer_id}
-                  className="bg-white p-3 rounded-md hover:cursor-pointer"
-                  onClick={() => {
-                    navigate(
-                      Path.OFFER_DETAILS.replace(":offer_id", offer.offer_id)
-                    );
-                  }}
-                >
-                  <h3>{offer.banner_title}</h3>
-                </button>
-              ))
-            ) : (
-              <div className="bg-white p-3 rounded-md">
-                No offers available for this category
+        </div>
+        <div className="flex gap-1 items-center">
+          <div className="bg-tertiary-8 w-5 md:w-7.5 h-1.5 rounded-2xl"></div>
+          <div className="bg-gray-medium w-2 h-2 rounded-2xl"></div>
+          <div className="bg-gray-medium w-2 h-2 rounded-2xl"></div>
+        </div>
+      </div>
+
+      {/* offer section - category selection tabs */}
+      <div className="flex flex-col items-center gap-3 md:gap-6">
+        <div className="flex flex-col items-center gap-2">
+          <h1 className="uppercase text-quaternary-1">Offers</h1>
+          <h1 className="text-xl font-bold">Explore wide range of offers</h1>
+        </div>
+        <div className="flex gap-2 md:gap-10 items-center">
+          {tabsData?.data?.map((category) => (
+            <button
+              key={category.category_id}
+              className={`p-3 text-xs md:text-lg font-bold rounded-lg border-2 w-20 md:w-35 md:min-h-12.5 break-words whitespace-normal text-center ${
+                activeCategory === category.category_id
+                  ? "bg-gray-deepest border-quaternary-2"
+                  : "bg-white border-gray-off hover:cursor-pointer hover:border-quaternary-2"
+              }`}
+              onClick={() => setActiveCategory(category.category_id)}
+            >
+              {category.name}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* offer section - offer cards */}
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6.5 gap-y-10 px-4">
+        {listData?.data?.offer_data?.length ? (
+          listData?.data?.offer_data?.map((offer) => {
+            const imageUrl = offer.thumbnail_image?.[0]?.image_url;
+            return (
+              <div
+                key={offer.offer_id}
+                className="relative rounded-3xl overflow-hidden"
+              >
+                {/* Background Image */}
+                <img
+                  src={imageUrl}
+                  alt={offer.thumbnail_title}
+                  className="w-full h-85 md:h-101 object-cover"
+                />
+
+                {/* Glassmorphism Overlay */}
+                <div className="absolute bottom-0 w-full p-5 bg-white/20 backdrop-blur-md flex justify-center items-center gap-6">
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-xl font-bold text-white">
+                      {offer.banner_title}
+                    </h3>
+                    <p className="text-xs text-white/90">
+                      {offer.thumbnail_title}
+                    </p>
+                  </div>
+                  <div>
+                    <button
+                      className="text-xs md:text-sm bg-gradient-3 rounded-xl p-2 font-bold text-white w-26 hover:cursor-pointer"
+                      onClick={() => {
+                        navigate(
+                          Path.OFFER_DETAILS.replace(
+                            ":offer_id",
+                            offer.offer_id
+                          )
+                        );
+                      }}
+                    >
+                      Get Started
+                    </button>
+                  </div>
+                </div>
               </div>
-            )}
-          </div>
+            );
+          })
         ) : (
-          <h1>list loading</h1>
+          <div className="bg-white p-3 rounded-md">
+            No offers available for this category
+          </div>
         )}
+      </div>
+
+      <div className="flex self-center bg-gradient-3 w-fit p-0.5 rounded-xl">
+        <button className="text-xs md:text-sm font-bold px-3 py-2 bg-gray-deepest overflow-hidden rounded-xl">
+          View more offers
+        </button>
       </div>
     </div>
   );
