@@ -33,6 +33,8 @@ const HomePage = () => {
           style={{ zIndex: idx }}
         />
       ))}
+
+      <div className="text-success-gradient-start">bg color setting</div>
     </div>
   );
 };
