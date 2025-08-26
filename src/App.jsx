@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import HomePage from "./pages/Homepage";
 import { Path } from "./components/path";
+import OfferPage from "./pages/OfferPage";
 import OfferDetails from "./pages/OfferDetails";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path={Path.HOME} element={<HomePage />} />
+        <Route path={Path.OFFER} element={<OfferPage />} />
         <Route path={Path.OFFER_DETAILS} element={<OfferDetails />} />
       </Routes>
     </BrowserRouter>
