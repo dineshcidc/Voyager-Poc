@@ -20,11 +20,15 @@ const OfferPage = () => {
 
   const [activeCategory, setActiveCategory] = useState(null);
 
+  // pagination
+  const [visibleCount, setVisibleCount] = useState(3); // 👈 initially show 3
+
   // Fetch categories on component mount
   useEffect(() => {
     getOfferCategories({
       page: 1,
-      per_page: 10,
+      // page 10 to 3
+      per_page: 3,
       search: "",
       for_dropdown: true,
     });
@@ -44,12 +48,17 @@ const OfferPage = () => {
         after: "",
         category_id: activeCategory,
       });
+      // pagination
+      setVisibleCount(3);
     }
   }, [activeCategory, getOffersList]);
 
   if (listError || tabsError) {
     return <div>Error loading data</div>;
   }
+
+  const offers = listData?.data?.offer_data || [];
+  const visibleOffers = offers.slice(0, visibleCount);
 
   return (
     <div className="min-h-screen flex flex-col gap-10 md:gap-25 bg-gray-light">
@@ -111,12 +120,12 @@ const OfferPage = () => {
           ))}
         </div>
       </div>
-
       {/* offer section - offer cards */}
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6.5 gap-y-10 px-4">
-        {listData?.data?.offer_data?.length ? (
-          listData?.data?.offer_data?.map((offer) => {
+        {/* {listData?.data?.offer_data?.length ? (
+          listData?.data?.offer_data?.map((offer) => { */}
+        {visibleOffers.length ? (
+          visibleOffers.map((offer) => {
             const imageUrl = offer.thumbnail_image?.[0]?.image_url;
             return (
               <div
@@ -166,11 +175,17 @@ const OfferPage = () => {
         )}
       </div>
 
-      <div className="flex self-center bg-gradient-3 w-fit p-0.5 rounded-xl">
-        <button className="text-xs md:text-sm font-bold px-3 py-2 bg-gray-deepest overflow-hidden rounded-xl">
-          View more offers
-        </button>
-      </div>
+      {/* view more button */}
+      {visibleCount < offers.length && (
+        <div className="flex self-center bg-gradient-3 w-fit p-0.5 rounded-xl">
+          <button
+            className="text-xs md:text-sm font-bold px-3 py-2 bg-gray-deepest overflow-hidden rounded-xl"
+            onClick={() => setVisibleCount((prev) => prev + 3)} // 👈 load 3 more
+          >
+            View more offers
+          </button>
+        </div>
+      )}
     </div>
   );
 };
