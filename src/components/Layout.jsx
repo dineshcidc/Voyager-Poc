@@ -36,11 +36,9 @@ const Layout = () => {
           style={{ zIndex: idx }}
         />
       ))}
-      <div className="relative flex-1 flex flex-col gap-4 px-15 py-7.5 bg-amber-300">
+      <div className="relative z-10 flex-1 flex flex-col gap-4 px-15 py-7.5">
         <Header />
-        <div className="z-10">
-          <Outlet />
-        </div>
+        <Outlet />
       </div>
       <Footer />
     </div>

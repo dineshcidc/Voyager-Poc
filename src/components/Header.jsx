@@ -4,7 +4,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="sticky top-0 z-10 bg-white h-10 rounded-full flex items-center p-8 justify-between">
+    <header className="sticky top-0 bg-white h-10 rounded-full flex items-center p-8 justify-between">
       <div className="flex gap-5">
         <button
           className="hover:cursor-pointer hover:underline uppercase"
