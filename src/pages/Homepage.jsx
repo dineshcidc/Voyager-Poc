@@ -34,7 +34,7 @@ const HomePage = () => {
         />
       ))}
 
-      <div className="text-success-gradient-start">bg color setting</div>
+      <div className="text-success-gradient-start">Inprogress</div>
     </div>
   );
 };

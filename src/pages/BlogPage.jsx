@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 
 import { Path } from "../components/path";
 import { ImagesPath } from "../assets/ImagesPath";
-import ViewMoreBtn from "../components/ViewMoreBtn";
 
 import {
   useGetOfferCategoriesMutation,
   useGetOffersListMutation,
 } from "../redux/service/nubloApi";
+import ViewMoreBtn from "../components/ViewMoreBtn";
 
-const OfferPage = () => {
+const BlogPage = () => {
   const navigate = useNavigate();
 
   const [getOfferCategories, { data: tabsData, error: tabsError }] =
@@ -105,7 +105,7 @@ const OfferPage = () => {
           <h1 className="uppercase text-quaternary-1">Offers</h1>
           <h1 className="text-xl font-bold">Explore wide range of offers</h1>
         </div>
-        <div className="flex gap-2 md:gap-10 items-center flex-wrap justify-center">
+        <div className="flex gap-2 md:gap-10 items-center">
           {tabsData?.data?.map((category) => (
             <button
               key={category.category_id}
@@ -121,7 +121,6 @@ const OfferPage = () => {
           ))}
         </div>
       </div>
-
       {/* offer section - offer cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6.5 gap-y-10 px-4">
         {/* {listData?.data?.offer_data?.length ? (
@@ -185,4 +184,4 @@ const OfferPage = () => {
   );
 };
 
-export default OfferPage;
+export default BlogPage;
