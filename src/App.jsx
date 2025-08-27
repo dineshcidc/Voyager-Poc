@@ -6,6 +6,7 @@ import OfferPage from "./pages/OfferPage";
 import BlogDetails from "./pages/BlogDetails";
 import OfferDetails from "./pages/OfferDetails";
 import PageNotFound from "./pages/PageNotFound";
+import TermsConditions from "./pages/TermsConditions";
 
 import Layout from "./components/Layout";
 import { UrlPath } from "./constants/UrlPath";
@@ -20,6 +21,10 @@ function App() {
           <Route path={UrlPath.OFFER_DETAILS} element={<OfferDetails />} />
           <Route path={UrlPath.BLOG} element={<BlogPage />} />
           <Route path={UrlPath.BLOG_DETAILS} element={<BlogDetails />} />
+          <Route
+            path={UrlPath.TERMS_CONDITIONS}
+            element={<TermsConditions />}
+          />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
