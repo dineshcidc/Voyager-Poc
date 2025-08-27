@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Path } from "../components/path";
+import { UrlPath } from "../constants/path";
 import { ImagesPath } from "../assets/ImagesPath";
+import ViewMoreBtn from "../components/ViewMoreBtn";
 
 import {
   useGetOfferCategoriesMutation,
   useGetOffersListMutation,
 } from "../redux/service/nubloApi";
-import ViewMoreBtn from "../components/ViewMoreBtn";
 
 const BlogPage = () => {
   const navigate = useNavigate();
@@ -155,7 +155,7 @@ const BlogPage = () => {
                       className="text-xs md:text-sm bg-gradient-3 rounded-xl p-2 font-bold text-white w-26 hover:cursor-pointer"
                       onClick={() => {
                         navigate(
-                          Path.OFFER_DETAILS.replace(
+                          UrlPath.OFFER_DETAILS.replace(
                             ":offer_id",
                             offer.offer_id
                           )
@@ -178,7 +178,10 @@ const BlogPage = () => {
 
       {/* view more button */}
       {visibleCount < offers.length && (
-        <ViewMoreBtn onClick={() => setVisibleCount((prev) => prev + 3)} />
+        <ViewMoreBtn
+          label="View More"
+          onClick={() => setVisibleCount((prev) => prev + 3)}
+        />
       )}
     </div>
   );

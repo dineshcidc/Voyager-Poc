@@ -38,7 +38,7 @@ const OfferDetails = () => {
   );
 
   return (
-    <div className="min-h-screen flex flex-col gap-10 md:gap-25 bg-gray-light">
+    <div className="flex flex-col gap-10 md:gap-25">
       {/* banner section */}
       <div className="w-full rounded-4xl bg-amber-100 p-5.5 md:px-15 md:py-12">
         <div className="grid md:grid-cols-2 gap-7.5 md:gap-48 items-center">

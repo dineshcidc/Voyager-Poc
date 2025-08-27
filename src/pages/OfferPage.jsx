@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Path } from "../components/path";
+import { UrlPath } from "../constants/path";
 import { ImagesPath } from "../assets/ImagesPath";
 import ViewMoreBtn from "../components/ViewMoreBtn";
 
@@ -62,7 +62,7 @@ const OfferPage = () => {
   const visibleOffers = offers.slice(0, visibleCount);
 
   return (
-    <div className="min-h-screen flex flex-col gap-10 md:gap-25 bg-gray-light">
+    <div className="min-h-screen flex flex-col gap-10 md:gap-25">
       {/* carousel section */}
       <div className="flex flex-col gap-6 items-center">
         <div className="w-full rounded-4xl bg-amber-100 p-5.5 md:px-15 md:py-12">
@@ -156,7 +156,7 @@ const OfferPage = () => {
                       className="text-xs md:text-sm bg-gradient-3 rounded-xl p-2 font-bold text-white w-26 hover:cursor-pointer"
                       onClick={() => {
                         navigate(
-                          Path.OFFER_DETAILS.replace(
+                          UrlPath.OFFER_DETAILS.replace(
                             ":offer_id",
                             offer.offer_id
                           )
@@ -179,7 +179,10 @@ const OfferPage = () => {
 
       {/* view more button */}
       {visibleCount < offers.length && (
-        <ViewMoreBtn onClick={() => setVisibleCount((prev) => prev + 3)} />
+        <ViewMoreBtn
+          label="View More"
+          onClick={() => setVisibleCount((prev) => prev + 3)}
+        />
       )}
     </div>
   );
