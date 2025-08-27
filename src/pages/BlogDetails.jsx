@@ -7,14 +7,14 @@ import { VerticalDivider } from "../components/VerticalDivider";
 
 import { useGetOfferDetailsQuery } from "../redux/service/nubloApi";
 
-const OfferDetails = () => {
-  const { offer_id } = useParams();
+const BlogDetails = () => {
+  const { blog_id } = useParams();
 
   const {
     data: { data: response } = {},
     error,
     isLoading,
-  } = useGetOfferDetailsQuery(offer_id);
+  } = useGetOfferDetailsQuery(blog_id);
 
   if (isLoading) return <div>Loading details...</div>;
   if (error) return <div>Error loading offer details</div>;
@@ -178,4 +178,4 @@ const OfferDetails = () => {
   );
 };
 
-export default OfferDetails;
+export default BlogDetails;

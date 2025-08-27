@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { UrlPath } from "../constants/UrlPath";
 import ViewMoreBtn from "../components/ViewMoreBtn";
 
 import {
@@ -8,6 +10,8 @@ import {
 } from "../redux/service/nubloApi";
 
 const BlogPage = () => {
+  const navigate = useNavigate();
+
   const [getOfferCategories, { data: tabsData, error: tabsError }] =
     useGetOfferCategoriesMutation();
 
@@ -96,6 +100,11 @@ const BlogPage = () => {
             return (
               <div
                 key={offer.offer_id}
+                onClick={() => {
+                  navigate(
+                    UrlPath.BLOG_DETAILS.replace(":blog_id", offer.offer_id)
+                  );
+                }}
                 className="rounded-3xl overflow-hidden bg-white"
               >
                 {/* Image Section */}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { UrlPath } from "../constants/path";
+import { UrlPath } from "../constants/UrlPath";
 import { ImagesPath } from "../assets/ImagesPath";
 import ViewMoreBtn from "../components/ViewMoreBtn";
 
