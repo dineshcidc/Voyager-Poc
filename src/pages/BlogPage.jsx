@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { UrlPath } from "../constants/UrlPath";
 import ViewMoreBtn from "../components/ViewMoreBtn";
+import ApplyNowOption from "../components/ApplyNowOption";
 
 import {
   useGetOfferCategoriesMutation,
@@ -149,6 +150,9 @@ const BlogPage = () => {
           onClick={() => setVisibleCount((prev) => prev + 3)}
         />
       )}
+
+      {/* apply now option */}
+      <ApplyNowOption />
     </div>
   );
 };

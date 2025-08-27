@@ -26,10 +26,7 @@ const Header = () => {
         </button>
       </div>
 
-      <button
-        className="rounded-2xl px-4 py-1 hover:cursor-pointer bg-gradient-3 text-white uppercase"
-        onClick={() => navigate("/blog")}
-      >
+      <button className="rounded-2xl px-4 py-1 hover:cursor-pointer bg-gradient-3 text-white uppercase">
         apply now
       </button>
     </header>
