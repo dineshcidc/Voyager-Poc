@@ -10,6 +10,12 @@ const Footer = () => {
       >
         Terms & Conditions
       </button>
+      <button
+        className="hover:cursor-pointer"
+        onClick={() => navigate("/faqs")}
+      >
+        FAQs
+      </button>
       <button className="hover:cursor-pointer" onClick={() => {}}>
         Privacy Policy
       </button>

@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import FaqPage from "./pages/FaqPage";
 import BlogPage from "./pages/BlogPage";
 import HomePage from "./pages/Homepage";
 import OfferPage from "./pages/OfferPage";
@@ -25,6 +26,7 @@ function App() {
             path={UrlPath.TERMS_CONDITIONS}
             element={<TermsConditions />}
           />
+          <Route path={UrlPath.FAQS} element={<FaqPage />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

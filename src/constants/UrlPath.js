@@ -5,4 +5,5 @@ export const UrlPath = {
   BLOG: "/blog",
   BLOG_DETAILS: "/blog-details/:blog_id",
   TERMS_CONDITIONS: "/terms-conditions",
+  FAQS: "/faqs",
 };
