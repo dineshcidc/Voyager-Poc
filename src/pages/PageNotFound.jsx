@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { ImagesPath } from "../assets/ImagesPath";
+import { ImagesPath } from "../helpers/imagesPath";
 
 const PageNotFound = () => {
   const navigate = useNavigate();

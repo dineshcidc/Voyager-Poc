@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import Footer from "./Footer";
 import Header from "./Header";
-import { ImagesPath } from "../assets/ImagesPath";
+import Footer from "./Footer";
+import { ImagesPath } from "../helpers/imagesPath";
 
 const bgImages = [
   ImagesPath.BG_IMAGE_1,

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 
-import { ImagesPath } from "../assets/ImagesPath";
 import { formatDate } from "../helpers/dateFormat";
+import { ImagesPath } from "../helpers/imagesPath";
 import { WithSanitizedHTML } from "../helpers/sanitizedHTML";
 import { VerticalDivider } from "../components/VerticalDivider";
 
