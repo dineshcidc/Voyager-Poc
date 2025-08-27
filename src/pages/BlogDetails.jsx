@@ -1,42 +1,7 @@
-import { useParams } from "react-router-dom";
-
 import { ImagesPath } from "../helpers/imagesPath";
-import { formatDate } from "../helpers/dateFormat";
-import { WithSanitizedHTML } from "../helpers/sanitizedHTML";
-import { VerticalDivider } from "../components/VerticalDivider";
-
-import { useGetOfferDetailsQuery } from "../redux/service/nubloApi";
+import ApplyNowOption from "../components/ApplyNowOption";
 
 const BlogDetails = () => {
-  const { blog_id } = useParams();
-
-  const {
-    data: { data: response } = {},
-    error,
-    isLoading,
-  } = useGetOfferDetailsQuery(blog_id);
-
-  if (isLoading) return <div>Loading details...</div>;
-  if (error) return <div>Error loading offer details</div>;
-
-  const Section = ({ title, children }) => (
-    <div className="flex flex-col gap-3 md:gap-5">
-      <h1 className="font-bold md:text-3xl">{title}</h1>
-      <div className="md:text-xl">{children}</div>
-    </div>
-  );
-
-  const OfferCardField = ({ label, children, bordered }) => (
-    <div
-      className={`flex flex-col gap-1 ${
-        bordered ? "border-2 rounded-2xl p-2.5 border-tertiary-4" : ""
-      }`}
-    >
-      <h1 className="font-bold text-xs md:text-base">{label}</h1>
-      <h2 className="text-sm md:text-lg">{children}</h2>
-    </div>
-  );
-
   return (
     <div className="flex flex-col gap-10 md:gap-25">
       {/* banner section */}
@@ -48,114 +13,174 @@ const BlogDetails = () => {
         />
       </div>
 
-      <div className="flex flex-col md:flex-row md:justify-between overflow-hidden gap-y-5 md:gap-y-0">
+      <div className="flex flex-col md:flex-row md:justify-between overflow-hidden gap-y-5 md:gap-y-0 md:gap-x-20">
         {/* left content */}
-        <div className="flex flex-col max-w-203 gap-3 md:gap-7 order-2 md:order-1">
-          {/* overview */}
-          <Section title="Overview">
-            {WithSanitizedHTML(response?.offer_details.offer_overview)}
-          </Section>
-
-          {/* avail offer */}
-          <Section title="How to Avail the Offer">
-            {WithSanitizedHTML(
-              response?.offer_details?.avail_offer,
-              "list-disc pl-5 space-y-2"
-            )}
-          </Section>
-
-          {/* terms and conditions */}
-          <Section title="Terms & Conditions">
-            {WithSanitizedHTML(
-              response?.offer_details?.terms_conditions,
-              "list-disc pl-5 space-y-2"
-            )}
-          </Section>
+        <div className="flex flex-col lg:max-w-164 xl:max-w-3/4 gap-3 md:gap-8 order-2 md:order-1">
+          <div className="flex flex-col gap-4">
+            <h1 className="md:text-lg">Home | Blog</h1>
+            <h1 className="font-bold text-base md:text-3xl">
+              Traveller Forex Cards vs. Cash vs. Credit Cards - Which Should You
+              Carry Abroad?
+            </h1>
+            <h1 className="text-base md:text-lg">
+              Published on Mar 1,2025 | 2 min read
+            </h1>
+          </div>
+          <span className="mt-2 md:mt-0 text-base md:text-lg">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum
+          </span>
+          <span className="text-base md:text-lg">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborumLorem ipsum
+            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+            officia deserunt mollit anim id est laborum
+          </span>
+          <span className="text-base md:text-lg">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum
+          </span>
+          <span className="text-base md:text-lg">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum
+          </span>
         </div>
 
         {/* right content */}
-        <div className="bg-white rounded-2xl md:w-102 h-fit p-5 md:px-3.5 py-5 gap-5 flex flex-col order-1 md:order-2">
-          <h1 className="font-bold text-base md:text-xl text-quaternary-1">
-            Offer Plan Card
-          </h1>
-
-          {/* First row: Offer Title and Offer Validity */}
-          <div className="flex gap-5 items-stretch">
-            {/* offer title */}
-            <div className="flex flex-col gap-1 flex-1">
-              <h1 className="font-bold text-xs md:text-base">Offer Title</h1>
-              <h2 className="text-sm md:text-lg">
-                {response?.offer_details?.thumbnail_title}
-              </h2>
-              <h2 className="text-sm md:text-lg">Special - 20% OFF HC</h2>
+        <div className="flex flex-col gap-4 p-5 md:p-4 bg-gradient-1-end/30 rounded-2xl border-gradient-1-end/30 border-1 order-1 md:order-2 h-fit">
+          <div className="flex flex-col items-center gap-2.5 md:gap-6">
+            <div className="flex md:flex-col gap-3">
+              {/* image */}
+              <img
+                src={ImagesPath.VISA_CARD}
+                alt="visa_img"
+                className="rounded-2xl w-35 md:w-full h-22 md:h-full"
+              />
+              {/* content */}
+              <div className="flex flex-col gap-3">
+                <h1 className="font-bold text-xs md:text-xl">
+                  Currency Freedom at Your Fingertips
+                </h1>
+                <h1 className="text-xs md:text-lg">
+                  Smart, Travel Smarter links smart application with wise travel
+                  finance.
+                </h1>
+              </div>
             </div>
 
-            {/* vertical line */}
-            <VerticalDivider />
-
-            {/* offer validity */}
-            <div className="flex flex-col gap-1 flex-1">
-              <h1 className="font-bold text-xs md:text-base">Offer Validity</h1>
-              <h2 className="text-sm md:text-lg">
-                {response?.offer_details?.validity || "HC"}
-              </h2>
-            </div>
+            {/* button */}
+            <button className="rounded-xl px-3 py-2 hover:cursor-pointer bg-gradient-3 text-white capitalize w-full font-bold">
+              apply now
+            </button>
           </div>
-
-          {/* Second row: Travel Period and Booking Due Date */}
-          <div className="flex gap-5 items-stretch">
-            {/* travel period */}
-            <div className="flex flex-col gap-1 flex-1">
-              <h1 className="font-bold text-xs md:text-base">Travel Period</h1>
-              <h2 className="text-sm md:text-lg">
-                {response?.offer_details?.travel_period || "HC"}
-              </h2>
-            </div>
-
-            {/* vertical line */}
-            <VerticalDivider />
-
-            {/* booking due date */}
-            <div className="flex flex-col gap-1 flex-1">
-              <h1 className="font-bold text-xs md:text-base">
-                Booking Due Date
-              </h1>
-              <h2 className="text-sm md:text-lg">
-                {response?.offer_details?.offer_end_date
-                  ? formatDate(response.offer_details.offer_end_date)
-                  : "HC"}
-              </h2>
-            </div>
-          </div>
-
-          {/* divider */}
-          <div className="border-1 border-gray-light"></div>
-
-          {/* eligibility */}
-          <OfferCardField label="Eligibility">
-            {response?.offer_details?.eligibility ||
-              "All customers booking through Unimoni Travel across India and UAE HC"}
-          </OfferCardField>
-
-          {/* inclusions */}
-          <OfferCardField label="Inclusions">
-            {response?.offer_details?.inclusions ||
-              "Flights, 4-star accommodation, guided tours, airport transfers HC"}
-          </OfferCardField>
-
-          {/* exclusions */}
-          <OfferCardField label="Exclusions">
-            {response?.offer_details?.exclusions ||
-              "Visa fees, personal expenses, optional activities HC"}
-          </OfferCardField>
-
-          {/* special note */}
-          <OfferCardField label="Special Note" bordered>
-            {response?.offer_details?.special_note ||
-              "Early bookings may get free room upgrades (subject to availability) HC"}
-          </OfferCardField>
         </div>
       </div>
+      <div className="flex flex-col gap-3 md:gap-6">
+        <div className="flex flex-col gap-2 md:gap-4">
+          <h1 className="uppercase text-base">related blogs</h1>
+          <h1 className="text-xl md:text-[40px] font-bold">
+            Your Guide to Smarter Money
+          </h1>
+        </div>
+        {/* Blog cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6.5 gap-y-10">
+          <div className="rounded-3xl overflow-hidden bg-white">
+            {/* Image Section */}
+            <div className="relative">
+              <img
+                src={ImagesPath.BLOG_BANNER}
+                alt="blog-banner"
+                className="w-full h-85 md:h-101 object-cover rounded-b-3xl"
+              />
+
+              {/* Glassmorphism Overlay */}
+              <div className="absolute bottom-0 w-full p-5 bg-white/20 backdrop-blur-md rounded-b-3xl">
+                <h3 className="text-xl font-bold text-white">Title HC</h3>
+              </div>
+            </div>
+
+            {/* Date & Subtext */}
+            <div className="px-6 py-5 flex flex-col gap-2">
+              <div className="text-sm bg-gray-deepest rounded-xl px-3 py-2 w-fit">
+                02 Mar 2025
+              </div>
+              <div className="text-base font-semibold">Thumbnail HC</div>
+            </div>
+          </div>
+          <div className="rounded-3xl overflow-hidden bg-white">
+            {/* Image Section */}
+            <div className="relative">
+              <img
+                src={ImagesPath.BLOG_BANNER}
+                alt="blog-banner"
+                className="w-full h-85 md:h-101 object-cover rounded-b-3xl"
+              />
+
+              {/* Glassmorphism Overlay */}
+              <div className="absolute bottom-0 w-full p-5 bg-white/20 backdrop-blur-md rounded-b-3xl">
+                <h3 className="text-xl font-bold text-white">Title HC</h3>
+              </div>
+            </div>
+
+            {/* Date & Subtext */}
+            <div className="px-6 py-5 flex flex-col gap-2">
+              <div className="text-sm bg-gray-deepest rounded-xl px-3 py-2 w-fit">
+                02 Mar 2025
+              </div>
+              <div className="text-base font-semibold">Thumbnail HC</div>
+            </div>
+          </div>
+          <div className="rounded-3xl overflow-hidden bg-white">
+            {/* Image Section */}
+            <div className="relative">
+              <img
+                src={ImagesPath.BLOG_BANNER}
+                alt="blog-banner"
+                className="w-full h-85 md:h-101 object-cover rounded-b-3xl"
+              />
+
+              {/* Glassmorphism Overlay */}
+              <div className="absolute bottom-0 w-full p-5 bg-white/20 backdrop-blur-md rounded-b-3xl">
+                <h3 className="text-xl font-bold text-white">Title HC</h3>
+              </div>
+            </div>
+
+            {/* Date & Subtext */}
+            <div className="px-6 py-5 flex flex-col gap-2">
+              <div className="text-sm bg-gray-deepest rounded-xl px-3 py-2 w-fit">
+                02 Mar 2025
+              </div>
+              <div className="text-base font-semibold">Thumbnail HC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ApplyNowOption />
     </div>
   );
 };
