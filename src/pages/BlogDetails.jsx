@@ -40,30 +40,12 @@ const BlogDetails = () => {
   return (
     <div className="flex flex-col gap-10 md:gap-25">
       {/* banner section */}
-      <div className="w-full rounded-4xl bg-amber-100 p-5.5 md:px-15 md:py-12">
-        <div className="grid md:grid-cols-2 gap-7.5 md:gap-48 items-center">
-          {/* left side content */}
-          <div className="flex flex-col gap-5 order-2 md:order-1">
-            <h1 className="text-2xl md:text-5xl">Discover</h1>
-            <span className="text-2xl md:text-5xl font-bold">
-              Thailand with 20Off
-            </span>
-            <h2 className="text-xs md:text-lg">
-              Book your dream Thailand trip now and enjoy 20% o. Beaches,
-              culture, and adventure await you!
-            </h2>
-            <button className="text-xs md:text-base bg-gradient-3 rounded-xl px-3 py-2 font-bold text-white w-fit">
-              Book now
-            </button>
-          </div>
-
-          {/* right side image */}
-          <img
-            src={ImagesPath.OFFER_IMG_1}
-            alt="Background"
-            className="w-full h-70 object-cover rounded-4xl order-1 md:order-2"
-          />
-        </div>
+      <div className="w-full rounded-4xl overflow-hidden">
+        <img
+          src={ImagesPath.BLOG_BANNER}
+          alt="Background"
+          className="w-full h-70 object-cover rounded-4xl overflow-hidden"
+        />
       </div>
 
       <div className="flex flex-col md:flex-row md:justify-between overflow-hidden gap-y-5 md:gap-y-0">
